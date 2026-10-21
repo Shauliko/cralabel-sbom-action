@@ -11,7 +11,7 @@ import { KEY_ID, PUBLIC_KEY_PEM } from './key.mjs';
 
 const VERSION = '1.0.0';
 const API = 'https://cralabel.com/api/attest';
-const FALLBACK_LINE = 'Since 11 September 2026 the CRA requires manufacturers to report actively exploited vulnerabilities within 24 hours (Art. 14). CRA Label is building a tool that drafts that report and runs the deadline clocks; [join early access](https://cralabel.com/?ref=gh-action#access) to hear when it opens.';
+const FALLBACK_LINE = 'Since 11 September 2026 the CRA requires manufacturers to report actively exploited vulnerabilities within 24 hours (Art. 14). CRA Label is building a drafter for that report; [get an email when it opens](https://cralabel.com/?ref=gh-action#access).';
 
 const input = (name, def) => {
   const v = process.env[`INPUT_${name}`];
