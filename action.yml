@@ -1,0 +1,56 @@
+name: CRA Label SBOM
+description: Signed CycloneDX and SPDX SBOMs, built in your runner from lockfiles. Only hashes leave it. Free, no account.
+author: CRA Label
+branding:
+  icon: tag
+  color: yellow
+
+inputs:
+  path:
+    description: Directory to scan for dependency files, relative to the repository root.
+    required: false
+    default: '.'
+  sign:
+    description: Ask cralabel.com to sign an attestation over the SBOM hashes. Only hashes, counts and file names are sent. Set to false to keep the step fully offline.
+    required: false
+    default: 'true'
+  upload-artifact:
+    description: Upload the SBOMs and attestations as a build artifact.
+    required: false
+    default: 'true'
+  artifact-name:
+    description: Name of the build artifact. Give each job its own name when running in a matrix.
+    required: false
+    default: cra-sbom
+
+outputs:
+  files:
+    description: Number of dependency files turned into SBOMs.
+    value: ${{ steps.sbom.outputs.files }}
+  components:
+    description: Total components across all SBOMs, dev-only dependencies excluded.
+    value: ${{ steps.sbom.outputs.components }}
+  signed:
+    description: true when every SBOM received a signed attestation.
+    value: ${{ steps.sbom.outputs.signed }}
+  sbom-dir:
+    description: Directory holding the generated files.
+    value: ${{ steps.sbom.outputs.sbom-dir }}
+
+runs:
+  using: composite
+  steps:
+    - id: sbom
+      shell: bash
+      run: node "$GITHUB_ACTION_PATH/src/index.mjs"
+      env:
+        INPUT_PATH: ${{ inputs.path }}
+        INPUT_SIGN: ${{ inputs.sign }}
+        INPUT_UPLOAD_ARTIFACT: ${{ inputs.upload-artifact }}
+        INPUT_ARTIFACT_NAME: ${{ inputs.artifact-name }}
+    - if: inputs.upload-artifact == 'true' && steps.sbom.outputs.files != '0'
+      uses: actions/upload-artifact@v7
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: ${{ steps.sbom.outputs.sbom-dir }}
+        if-no-files-found: ignore
