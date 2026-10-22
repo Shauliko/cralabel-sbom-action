@@ -46,7 +46,7 @@ When `sign` is `true`, the Action sends one request to `https://cralabel.com/api
 - its ecosystem and its component count;
 - the SHA-256 hashes of the generated `cyclonedx.json` and `spdx.json`, with their serial number and document namespace.
 
-The repository is identified only by a SHA-256 digest of `cralabel-action:owner/repo`, which CRA Label keeps for rate limiting together with the time of the request and the country the request came from. Nothing else about the request is stored.
+The repository is identified only by a SHA-256 digest of `cralabel-action:owner/repo`. CRA Label stores part of that digest for rate limiting, together with the time, the Action version, the ecosystems and the country the request came from, and deletes the digest after 90 days. Nothing else about the request is stored. The operator, legal basis, storage location and your rights are set out in the [privacy notice](https://cralabel.com/privacy.html#github-action).
 
 Because CRA Label sees only hashes, the attestation records `"signingMode": "hash-only"`. It proves that these exact SBOM files existed at the signing time and were presented by this Action. It does not claim that CRA Label inspected their content.
 
