@@ -1,5 +1,5 @@
 name: CRA Label SBOM
-description: Signed CycloneDX and SPDX SBOMs, built in your runner from lockfiles. Only hashes leave it. Free, no account.
+description: Signed CycloneDX and SPDX SBOMs built in your runner. Your code and lockfiles never leave it. Free, no account.
 author: CRA Label
 branding:
   icon: tag

@@ -78,6 +78,10 @@ It needs Node.js 18 or newer on the runner, which every GitHub-hosted runner has
 
 Regulation (EU) 2024/2847 requires manufacturers of products with digital elements sold in the EU to draw up an SBOM "covering at the very least the top-level dependencies" (Annex I, Part II, point 1) and to keep it in their technical documentation (Annex VII). This Action produces that document. It is not a conformity assessment, it does not certify anything, and it is not legal advice. More at [cralabel.com/learn](https://cralabel.com/learn/).
 
+## Support
+
+Questions or problems: open an issue in this repository or email hello@cralabel.com. To report a security vulnerability in the Action itself, see [SECURITY.md](SECURITY.md).
+
 ## License
 
 [MIT](LICENSE)

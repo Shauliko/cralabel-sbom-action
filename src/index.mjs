@@ -183,7 +183,7 @@ async function main() {
     L.push('', `**Totals:** ${ok.length} dependency ${ok.length === 1 ? 'file' : 'files'}, ${total} components, ${dev} dev-only, ${unpinned} unpinned.`);
     if (unpinned) L.push('', 'Unpinned versions make an SBOM describe a range instead of what shipped. Committing a lockfile next to the manifest gives exact versions.');
     if (signNote) L.push('', `**Signature:** ${signNote}`);
-    else if (ok.length) L.push('', `**Signature:** ${signed} of ${ok.length} attestations signed by CRA Label with ML-DSA-65 (key \`${KEY_ID}\`)${verified ? `, ${verified} verified in this runner` : ''}. Only SHA-256 hashes, counts and file names left the runner.`);
+    else if (ok.length) L.push('', `**Signature:** ${signed} of ${ok.length} attestations signed by CRA Label with ML-DSA-65 (key \`${KEY_ID}\`)${verified ? `, ${verified} verified in this runner` : ''}. Only SHA-256 hashes, counts, file names and a hashed repository key left the runner.`);
   }
   L.push('', contact
     ? `**Vulnerability contact:** found in \`${contact}\`.`
